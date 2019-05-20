@@ -1,50 +1,35 @@
-def cMS(tLs):
-    maxLists = []
-    for tL in tLs:
-        maxList = []
-        for t in range(len(tL)):
-            maxx = []
-            ind = []
-            sum = tL[t][0]
-            maxx.append(tL[t][0])
-            ind.append(tL[t][1])
-            ind.append(tL[t][1]-1)
-            ind.append(tL[t][1]+1)
-            for t1 in tL[t:]:
-                if t1[1] not in ind:
-                    sum = sum + t1[0]
-                    maxx.append(t1[0])
-                    ind.append(t1[1])
-                    ind.append(t1[1]-1)
-                    ind.append(t1[1]+1)
-            maxList.append([sum, maxx])
-        maxList.sort(reverse=True)
-        print(maxList)
-        maxLists.append(maxList[0][1])
-    return(maxLists)
-
+def getMaxSumSubList(ticketsList):
+    maxSumList = []
+    for tickets in ticketsList:
+        num1 = 0
+        num2 = 0
+        num1List = []
+        num2List = []
+        tempList = []
+        for ticket in tickets:
+            temp = num1
+            num1 = max(num1, num2 + ticket)
+            num2 = temp
+            tempList = num1List
+            if(temp != num1):
+                num1List = num2List + [ticket]
+            num2List = tempList
+        maxSumList.append(num1)
+        num1List.reverse()
+        print(''.join(str(i) for i in num1List))
+    
 
 def main():
     T = int(input())
-    tLs = []
-
-    for test in range(T):
+    ticketsList = []
+    for t in range(T):
         N = int(input())
-        tickets = (list(map(int, input().split())))
-        tic2 = []
+        ticket = []
+        ticket = (list(map(int, input().split())))
+        ticketsList.append(ticket)
 
-        for i in range(len(tickets)):
-            tic2.append([tickets[i], i])
-        tic2.sort(reverse=True)
-        tic3 = [x for x in tic2 if x[0] > 0]
-        tLs.append(tic3)
+    getMaxSumSubList(ticketsList)
 
-    #TODO: optimize
-    maxLists = cMS(tLs)
-    for maxList in maxLists:
-        maxList.reverse()
-        print(''.join(str(i) for i in maxList))
+main()
 
 
-if __name__ == "__main__":
-    main()
