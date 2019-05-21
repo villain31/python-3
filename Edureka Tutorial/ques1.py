@@ -1,6 +1,6 @@
-def cWL(pL, vL):
-    for i in range(len(pL)):
-        if(pL[i] < vL[i]):
+def checkWinLose(playersList, villainsList):
+    for i in range(len(playersList)):
+        if(playersList[i] < villainsList[i]):
             print("LOSE")
             return
     print("WIN")
@@ -8,22 +8,25 @@ def cWL(pL, vL):
 
 
 def main():
+    # Number of Test Cases
     T = int(input())
-    vL = []
-    pL = []
+    villainsList = []
+    playersList = []
 
-# TODO: check range(T)
     for test in range(T):
+        # Number of Villains and Players FIXME: 'N' Not Required
         N = int(input())
-        v = (list(map(int, input().split())))
-        p = (list(map(int, input().split())))
-        v.sort()
-        p.sort()
-        vL.append(v)
-        pL.append(p)
+        # List of Villains Strengths
+        villains = (list(map(int, input().split())))
+        # List of Players Energy
+        players = (list(map(int, input().split())))
+        villains.sort()
+        players.sort()
+        villainsList.append(villains)
+        playersList.append(players)
 
     for test in range(T):
-        cWL(pL[test], vL[test])
+        checkWinLose(playersList[test], villainsList[test])
 
 
 if __name__ == "__main__":
