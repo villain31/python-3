@@ -26,6 +26,7 @@ def main():
         playersList.append(players)
 
     for test in range(T):
+        # Checking Win/Lose
         checkWinLose(playersList[test], villainsList[test])
 
 
