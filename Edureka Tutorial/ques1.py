@@ -14,7 +14,7 @@ def main():
     playersList = []
 
     for test in range(T):
-        # Number of Villains and Players FIXME: 'N' Not Required
+        # Number of Villains and Players TODO: 'N' Not Required
         N = int(input())
         # List of Villains Strengths
         villains = (list(map(int, input().split())))
